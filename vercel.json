@@ -30,7 +30,7 @@
       ]
     },
     {
-      "source": "/api/(.*)",
+      "source": "/api/(status|session|glitch|puzzle)",
       "headers": [
         {
           "key": "Cache-Control",
