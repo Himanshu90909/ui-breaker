@@ -1,0 +1,19 @@
+{
+  "name": "ui-breaker-nexus-os",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UI BREAKER: NEXUS OS - a 3D physics puzzle game where the interface is the weapon.",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "serve": "python3 -m http.server 8080 --directory .",
+    "test:mechanics": "node tests/mechanics.mjs",
+    "test:levels": "node tests/levels.mjs",
+    "test:audit": "node tests/audit.mjs",
+    "test:live": "node tests/live.mjs"
+  },
+  "devDependencies": {
+    "pngjs": "^7.0.0",
+    "puppeteer-core": "^23.11.1"
+  }
+}

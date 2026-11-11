@@ -1,0 +1,401 @@
+<div id="world"></div>
+<div id="fx"></div>
+<div id="glitchfx"></div>
+
+<div id="ui">
+  <!-- ============ BOOT / STARTUP CINEMATIC ============ -->
+  <section class="screen active" id="boot">
+    <div class="brand"><div class="brandmark"></div><div class="wordmark">NEXUS<span>/</span>OS</div></div>
+    <div id="bootlog"></div>
+    <div id="bootskip">PRESS ANY KEY TO SKIP</div>
+    <div class="bignexus">NEXUS OS</div>
+  </section>
+
+  <!-- ============ MAIN MENU ============ -->
+  <section class="screen" id="menu">
+    <div class="screenhead" style="margin-bottom:0">
+      <div class="brand"><div class="brandmark"></div><div class="wordmark">NEXUS<span>/</span>OS</div></div>
+      <div class="micro" id="menustamp">SESSION · ONLINE</div>
+    </div>
+    <div class="menugrid">
+      <div>
+        <div class="titleblock">
+          <div class="kickerrow"><span class="ln"></span><span class="micro">Chapter Zero / Containment Breach</span></div>
+          <h1 class="h1 glitchtitle" data-t="UI BREAKER">UI BREAKER</h1>
+          <div class="tagline">Your interface. Your weapon. Your reality.</div>
+        </div>
+        <nav class="navlist" id="mainnav">
+          <button class="navitem" data-go="continue"><span class="idx">01</span>Continue<span class="meta" id="navcontinue">—</span></button>
+          <button class="navitem" data-go="play"><span class="idx">02</span>Play Story</button>
+          <button class="navitem" data-go="levels"><span class="idx">03</span>Levels</button>
+          <button class="navitem" data-go="daily"><span class="idx">04</span>Daily Glitch</button>
+          <button class="navitem" data-go="timeattack"><span class="idx">05</span>Time Attack</button>
+          <button class="navitem" data-go="sandbox"><span class="idx">06</span>Sandbox</button>
+          <button class="navitem" data-go="editor"><span class="idx">07</span>Custom Levels</button>
+          <button class="navitem" data-go="profile"><span class="idx">08</span>Profile</button>
+          <button class="navitem" data-go="achievements"><span class="idx">09</span>Achievements</button>
+          <button class="navitem" data-go="leaderboard"><span class="idx">10</span>Leaderboard</button>
+          <button class="navitem" data-go="settings"><span class="idx">11</span>Settings</button>
+        </nav>
+      </div>
+      <aside class="sidepanel glass">
+        <div>
+          <div class="micro">Operative</div>
+          <div class="h2" style="margin-top:4px" id="sideName">GUEST</div>
+          <div class="dim" style="font-size:11px;margin-top:2px" id="sideRank">Level 1 · Unranked</div>
+        </div>
+        <div>
+          <div class="statbig" id="sideXP">0</div>
+          <div class="micro" style="margin-bottom:8px">Total XP</div>
+          <div class="xpbar"><i id="sideXPbar" style="width:0%"></i></div>
+        </div>
+        <div class="hr"></div>
+        <div>
+          <div class="statrow"><span>Levels cleared</span><b id="sideCleared">0 / 15</b></div>
+          <div class="statrow"><span>Best score</span><b id="sideBest">0</b></div>
+          <div class="statrow"><span>Shards recovered</span><b id="sideShards">0</b></div>
+          <div class="statrow"><span>Achievements</span><b id="sideAch">0 / 12</b></div>
+        </div>
+        <div class="hr"></div>
+        <div>
+          <div class="micro" style="margin-bottom:7px">Interface theme</div>
+          <div class="themebtns" id="themeBtns"></div>
+        </div>
+        <div style="margin-top:auto">
+          <div id="glitchline">GLITCH · "You built me out of your own shortcuts."</div>
+        </div>
+      </aside>
+    </div>
+    <div id="menufoot">
+      <div class="dailybadge">
+        <div class="micro orange">Daily Glitch available</div>
+        <div id="dailyline" style="font-size:11.5px;color:var(--dim);margin-top:4px;line-height:1.5">A new corrupted layout each day. Same seed for everyone.</div>
+      </div>
+      <div style="margin-left:auto;display:flex;gap:8px">
+        <button class="btn ghost" data-go="settings">Settings</button>
+        <button class="btn primary" data-go="continue" id="footContinue">Resume run</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CHAPTERS ============ -->
+  <section class="screen" id="chapters">
+    <div class="screenhead">
+      <div>
+        <div class="micro orange">Story Mode</div>
+        <h2 class="h1" style="font-size:clamp(24px,4vw,42px);margin-top:6px">SELECT CHAPTER</h2>
+      </div>
+      <button class="btn ghost" data-go="menu">← Back</button>
+    </div>
+    <div class="cards" id="chapterCards"></div>
+  </section>
+
+  <!-- ============ LEVELS ============ -->
+  <section class="screen" id="levels">
+    <div class="screenhead">
+      <div>
+        <div class="micro orange" id="levelsKicker">Story Mode</div>
+        <h2 class="h1" style="font-size:clamp(24px,4vw,42px);margin-top:6px" id="levelsTitle">LEVELS</h2>
+      </div>
+      <div class="row">
+        <button class="btn ghost" data-go="chapters" id="levelsBack">← Chapters</button>
+        <button class="btn ghost" data-go="menu">Menu</button>
+      </div>
+    </div>
+    <div class="cards" id="levelCards"></div>
+  </section>
+
+  <!-- ============ TIME ATTACK PICKER ============ -->
+  <section class="screen" id="timeattack">
+    <div class="screenhead">
+      <div><div class="micro orange">Challenge</div><h2 class="h1" style="font-size:clamp(22px,4vw,38px);margin-top:6px">TIME ATTACK</h2>
+        <div class="dim" style="font-size:12px;margin-top:6px">Cleared levels only. Your best time is kept per level.</div></div>
+      <button class="btn ghost" data-go="menu">← Back</button>
+    </div>
+    <div class="cards" id="taCards"></div>
+  </section>
+
+  <!-- ============ HUD ============ -->
+  <div id="hud">
+    <div id="objbox" class="panel glass">
+      <div class="micro" id="objlabel">Objective</div>
+      <div id="objtitle">—</div>
+      <div id="objsub"></div>
+      <div id="objprog"></div>
+    </div>
+    <div id="topright" class="panel">
+      <div class="resline">
+        <div class="res"><span>Time</span><b id="hudTime">0:00</b></div>
+        <div class="res"><span>Score</span><b id="hudScore">0</b></div>
+        <div class="res"><span>Energy</span><b id="hudEnergy">0</b></div>
+        <div class="res"><span>Rewinds</span><b id="hudRewinds">3</b></div>
+      </div>
+      <div class="resline" style="padding:6px 10px">
+        <div class="res" style="align-items:flex-start">
+          <span>Integrity</span>
+          <div id="hpbar"><i class="on"></i><i class="on"></i><i class="on"></i></div>
+        </div>
+        <div class="res"><span>Corruption</span><div id="glitchaware"><i></i></div></div>
+      </div>
+      <div id="corruption">GLITCH AWARENESS 0%</div>
+      <button class="btn ghost" id="hudPause" style="padding:5px 10px;font-size:9px;letter-spacing:.16em">⏸ PAUSE</button>
+    </div>
+    <div id="hintbar"></div>
+    <div id="dock"></div>
+    <div id="prompt"></div>
+    <div id="subtitle"></div>
+    <div id="toast"></div>
+    <div id="crosshair"></div>
+  </div>
+
+  <!-- ============ TOUCH ============ -->
+  <div id="touch">
+    <div id="lookzone"></div>
+    <div id="stick"><div id="stickknob"></div></div>
+    <div id="tbtns">
+      <div class="tbtn" data-tk="jump">JUMP</div>
+      <div class="tbtn" data-tk="interact">USE</div>
+      <div class="tbtn" data-tk="grab">GRAB</div>
+    </div>
+  </div>
+
+  <!-- ============ PAUSE ============ -->
+  <section class="screen overlay" id="pause">
+    <div class="menucol">
+      <div class="pausetop">
+        <div class="micro orange">Session suspended</div>
+        <div class="micro" id="pauseLevel">—</div>
+      </div>
+      <h2 class="h1" style="font-size:clamp(26px,5vw,44px)">PAUSED</h2>
+      <div class="dim" style="font-size:12px;line-height:1.6">Simulation halted. GLITCH is still listening.</div>
+      <div class="hr"></div>
+      <button class="btn primary" data-pause="resume">Resume <span class="k">ESC</span></button>
+      <button class="btn" data-pause="objectives">Objectives</button>
+      <button class="btn" data-pause="restart">Restart level</button>
+      <button class="btn" data-pause="settings">Settings</button>
+      <button class="btn danger" data-pause="quit">Quit to menu</button>
+      <div class="hr"></div>
+      <div class="micro" id="pauseStats" style="line-height:1.9"></div>
+    </div>
+  </section>
+
+  <!-- ============ OBJECTIVES ============ -->
+  <section class="screen overlay" id="objectives">
+    <div style="max-width:620px;margin:auto;width:100%">
+      <div class="micro orange">Mission brief</div>
+      <h2 class="h1" style="font-size:clamp(24px,4vw,38px);margin:8px 0 4px" id="objScreenTitle">OBJECTIVES</h2>
+      <div class="dim" style="font-size:12px;margin-bottom:18px" id="objScreenSub"></div>
+      <div class="glass" style="padding:18px"><div id="objScreenList" style="display:flex;flex-direction:column;gap:10px"></div></div>
+      <div class="hr"></div>
+      <div class="micro" style="margin-bottom:8px">Mechanics available</div>
+      <div class="row" id="objScreenMech"></div>
+      <div class="hr"></div>
+      <div class="micro" style="margin-bottom:8px">Controls</div>
+      <div class="dim" style="font-size:11.5px;line-height:1.9">
+        WASD / arrows move · Mouse look · Shift sprint · Space jump · E interact ·
+        F grab window · R rotate · [ ] resize · 1-5 interface consoles · Z rewind · Esc pause
+      </div>
+      <div class="row" style="margin-top:18px"><button class="btn primary" id="objClose">Back to game</button></div>
+    </div>
+  </section>
+
+  <!-- ============ COMPLETE ============ -->
+  <section class="screen overlay" id="complete">
+    <div class="wrap">
+      <div>
+        <div class="micro" id="compKicker">Level cleared</div>
+        <h2 class="h1" style="font-size:clamp(26px,5vw,48px);margin:6px 0 12px" id="compTitle">CONTAINMENT</h2>
+        <div class="dim" style="font-size:12px" id="compSub">—</div>
+        <div class="breakdown" id="compBreak"></div>
+        <div class="row" style="margin-top:18px">
+          <button class="btn primary" id="compNext">Next level</button>
+          <button class="btn" id="compRetry">Replay</button>
+          <button class="btn ghost" id="compMenu">Menu</button>
+        </div>
+      </div>
+      <div class="glass" style="padding:24px;text-align:center">
+        <div class="micro">Final score</div>
+        <div class="scorenum" id="compScore">0</div>
+        <div class="hr"></div>
+        <div class="statrow"><span>Time</span><b id="compTime">—</b></div>
+        <div class="statrow"><span>Rank</span><b id="compRank">—</b></div>
+        <div class="statrow"><span>XP earned</span><b id="compXP">—</b></div>
+        <div class="statrow"><span>Record</span><b id="compRecord">—</b></div>
+        <div class="hr"></div>
+        <div class="micro" style="margin-bottom:6px">Shards</div>
+        <div id="compShards" style="font-family:var(--ff-d);font-size:16px;letter-spacing:.3em;color:var(--cyan)">—</div>
+        <div id="compAch" style="margin-top:14px;display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROFILE ============ -->
+  <section class="screen" id="profile">
+    <div class="screenhead">
+      <div><div class="micro orange">Operative file</div><h2 class="h1" style="font-size:clamp(24px,4vw,40px);margin-top:6px">PROFILE</h2></div>
+      <button class="btn ghost" data-go="menu">← Back</button>
+    </div>
+    <div class="pgrid">
+      <div class="glass idcard">
+        <div class="avatar">
+          <svg viewBox="0 0 24 24"><path d="M4 20v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </div>
+        <div>
+          <div class="h2" id="profName">GUEST</div>
+          <div class="micro" style="margin-top:4px" id="profRank">Level 1</div>
+        </div>
+        <div style="width:100%">
+          <div class="statrow"><span>XP</span><b id="profXP">0</b></div>
+          <div class="xpbar" style="margin-top:6px"><i id="profXPbar" style="width:0%"></i></div>
+        </div>
+        <div class="hr" style="width:100%"></div>
+        <div style="width:100%">
+          <div class="statrow"><span>Levels cleared</span><b id="profCleared">0</b></div>
+          <div class="statrow"><span>Total score</span><b id="profTotal">0</b></div>
+          <div class="statrow"><span>Fastest clear</span><b id="profFastest">—</b></div>
+          <div class="statrow"><span>Rewinds used</span><b id="profRewinds">0</b></div>
+          <div class="statrow"><span>GLITCH defeats</span><b id="profBoss">0</b></div>
+        </div>
+        <div class="hr" style="width:100%"></div>
+        <div style="width:100%">
+          <div class="micro" style="margin-bottom:6px">Name tag</div>
+          <div class="row"><input id="profNameInput" maxlength="16" placeholder="Enter call sign"
+            style="flex:1;background:rgba(5,8,13,.8);border:1px solid var(--line);padding:8px;font-family:var(--ff-d);font-size:12px;letter-spacing:.1em">
+            <button class="btn" id="profSaveName">Save</button></div>
+        </div>
+      </div>
+      <div>
+        <div class="glass" style="padding:18px;margin-bottom:14px">
+          <div class="micro" style="margin-bottom:10px">Unlockable interface themes</div>
+          <div class="cards" id="profThemes" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))"></div>
+        </div>
+        <div class="glass" style="padding:18px">
+          <div class="micro" style="margin-bottom:10px">Digital trails & cosmetics</div>
+          <div class="cards" id="profTrails" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr))"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ACHIEVEMENTS ============ -->
+  <section class="screen" id="achievements">
+    <div class="screenhead">
+      <div><div class="micro orange">System records</div><h2 class="h1" style="font-size:clamp(24px,4vw,40px);margin-top:6px">ACHIEVEMENTS</h2></div>
+      <button class="btn ghost" data-go="menu">← Back</button>
+    </div>
+    <div class="achgrid" id="achGrid"></div>
+  </section>
+
+  <!-- ============ LEADERBOARD ============ -->
+  <section class="screen" id="leaderboard">
+    <div class="screenhead">
+      <div><div class="micro orange">Records</div><h2 class="h1" style="font-size:clamp(24px,4vw,40px);margin-top:6px">LEADERBOARD</h2>
+        <div class="dim" style="font-size:11.5px;margin-top:6px">Scores are validated and stored on this device. No account data leaves your browser.</div></div>
+      <button class="btn ghost" data-go="menu">← Back</button>
+    </div>
+    <div class="tabs" id="lbTabs"></div>
+    <div class="glass" style="padding:8px 14px;max-width:900px;overflow:auto"><table class="lb" id="lbTable"></table></div>
+    <div class="row" style="margin-top:14px"><button class="btn" id="lbReset">Clear local records</button></div>
+  </section>
+
+  <!-- ============ SETTINGS ============ -->
+  <section class="screen" id="settings">
+    <div class="screenhead">
+      <div><div class="micro orange">System</div><h2 class="h1" style="font-size:clamp(24px,4vw,40px);margin-top:6px">SETTINGS</h2></div>
+      <div class="row"><button class="btn ghost" id="settingsBack">← Back</button></div>
+    </div>
+    <div class="setgrid">
+      <div class="glass setblock">
+        <div class="micro" style="margin-bottom:6px">Audio</div>
+        <div class="setrow"><label>Master volume</label><input type="range" id="volMaster" min="0" max="100"></div>
+        <div class="setrow"><label>Music</label><input type="range" id="volMusic" min="0" max="100"></div>
+        <div class="setrow"><label>Sound effects</label><input type="range" id="volSfx" min="0" max="100"></div>
+      </div>
+      <div class="glass setblock">
+        <div class="micro" style="margin-bottom:6px">Graphics</div>
+        <div class="setrow"><label>Render quality<small>Lower this if the frame rate drops.</small></label>
+          <select id="setQuality"><option value="low">Low</option><option value="medium">Medium</option><option value="high">High</option></select></div>
+        <div class="setrow"><label>Shadows</label><div class="switch" id="setShadows"><i></i></div></div>
+        <div class="setrow"><label>Particles</label><div class="switch" id="setParticles"><i></i></div></div>
+        <div class="setrow"><label>Camera shake</label><div class="switch" id="setShake"><i></i></div></div>
+      </div>
+      <div class="glass setblock">
+        <div class="micro" style="margin-bottom:6px">Controls</div>
+        <div class="setrow"><label>Look sensitivity</label><input type="range" id="setSens" min="30" max="220"></div>
+        <div class="setrow"><label>Invert camera Y</label><div class="switch" id="setInvert"><i></i></div></div>
+        <div class="setrow"><label>Touch controls<small>Force on-screen joystick.</small></label><div class="switch" id="setTouch"><i></i></div></div>
+        <div class="setrow"><label>Show hints</label><div class="switch" id="setHints"><i></i></div></div>
+      </div>
+      <div class="glass setblock">
+        <div class="micro" style="margin-bottom:6px">Accessibility</div>
+        <div class="setrow"><label>Reduced motion<small>Disables shake, heavy transitions and flash.</small></label><div class="switch" id="setMotion"><i></i></div></div>
+        <div class="setrow"><label>High contrast UI</label><div class="switch" id="setContrast"><i></i></div></div>
+        <div class="setrow"><label>Larger HUD text</label><div class="switch" id="setBigHud"><i></i></div></div>
+        <div class="setrow"><label>Subtitles for GLITCH</label><div class="switch" id="setSubs"><i></i></div></div>
+      </div>
+      <div class="glass setblock">
+        <div class="micro" style="margin-bottom:6px">Data</div>
+        <div class="setrow"><label>Profile<small>Local save · progress, scores, achievements.</small></label>
+          <div class="row"><button class="btn" id="dataExport">Export</button><button class="btn danger" id="dataWipe">Wipe</button></div></div>
+        <div class="setrow"><label>Reset tutorial hints</label><button class="btn" id="dataHints">Reset</button></div>
+        <div class="setrow"><label>Build</label><span class="micro">UI BREAKER 1.0 · NEXUS OS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDITOR ============ -->
+  <section class="screen" id="editor">
+    <div class="screenhead" style="margin-bottom:12px">
+      <div><div class="micro orange">Custom levels</div><h2 class="h1" style="font-size:clamp(20px,3.4vw,34px);margin-top:4px">LEVEL EDITOR</h2></div>
+      <div class="row">
+        <button class="btn ghost" id="edPlay">▶ Test play</button>
+        <button class="btn" id="edSave">Save level</button>
+        <button class="btn ghost" data-go="menu">← Menu</button>
+      </div>
+    </div>
+    <div class="edwrap">
+      <div class="edpanel glass">
+        <div class="micro">Tools</div>
+        <div class="edtools" id="edTools"></div>
+        <div class="hr"></div>
+        <div class="micro">Height</div>
+        <div class="row"><button class="btn" id="edHUp">Raise</button><button class="btn" id="edHDown">Lower</button></div>
+        <div class="hr"></div>
+        <div class="micro">Grid</div>
+        <div class="statrow"><span>Cells</span><b id="edCount">0</b></div>
+        <div class="statrow"><span>Exit</span><b id="edExit">not placed</b></div>
+        <div class="statrow"><span>Spawn</span><b id="edSpawn">default</b></div>
+        <div class="hr"></div>
+        <button class="btn danger" id="edClear">Clear grid</button>
+      </div>
+      <div id="edcanvas"><div id="edgrid"></div></div>
+      <div class="edpanel glass">
+        <div class="micro">Preview & share</div>
+        <div id="edPreview" style="font-family:var(--ff-d);font-size:10px;color:var(--dim2);line-height:1.6">Click cells to place the selected element.</div>
+        <div class="hr"></div>
+        <div class="micro">Share code</div>
+        <textarea class="edcode" id="edShare" readonly placeholder="Save to generate"></textarea>
+        <div class="row"><button class="btn" id="edCopy">Copy</button><button class="btn" id="edImportBtn">Import</button></div>
+        <textarea class="edcode" id="edImport" placeholder="Paste a share code here"></textarea>
+        <div class="hr"></div>
+        <div class="micro">Saved levels</div>
+        <div id="edSaved" style="display:flex;flex-direction:column;gap:6px"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENDING ============ -->
+  <section class="screen" id="ending">
+    <div class="endwrap">
+      <div class="micro orange">Root access granted</div>
+      <h2 class="h1 glitchtitle" data-t="NEXUS FREED" style="font-size:clamp(30px,7vw,64px)">NEXUS FREED</h2>
+      <p id="endText">The interface dissolves around you. Somewhere behind the last window, GLITCH is still
+        laughing in a language made of menu sounds. You did not shoot your way out. You rearranged reality
+        until the door had no choice but to open.</p>
+      <div class="glass" style="padding:18px 22px"><div class="statrow"><span>Final score</span><b id="endScore">0</b></div>
+        <div class="statrow"><span>Total XP</span><b id="endXP">0</b></div></div>
+      <div class="tagline">Your interface. Your weapon. Your reality.</div>
+      <div class="row"><button class="btn primary" data-go="menu">Return to NEXUS OS</button></div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,26 @@
+import puppeteer from 'puppeteer-core';
+import { PNG } from 'pngjs';
+import fs from 'fs';
+const browser = await puppeteer.launch({executablePath:'/usr/bin/google-chrome',headless:'new',args:['--no-sandbox','--enable-unsafe-swiftshader','--use-gl=angle','--use-angle=swiftshader','--mute-audio']});
+const page = await browser.newPage(); await page.setViewport({width:1280,height:800});
+const errs=[]; page.on('pageerror',e=>errs.push(e.message));
+page.on('console',m=>{ if(m.type()==='error') errs.push('c:'+m.text()); });
+const t0=Date.now();
+await page.goto('https://ui-breaker-nexus.vercel.app/',{waitUntil:'domcontentloaded'});
+await page.waitForFunction('window.__UI_BREAKER_READY__===true',{timeout:30000});
+console.log('boot ms', Date.now()-t0);
+await page.keyboard.press('Space'); await new Promise(r=>setTimeout(r,1200));
+const stat = async (n)=>{ const buf=Buffer.from(await page.screenshot({type:'png'})); fs.writeFileSync(n,buf); const p=PNG.sync.read(buf); let s=0,d=0; const N=p.width*p.height; for(let i=0;i<p.data.length;i+=4){const l=(p.data[i]+p.data[i+1]+p.data[i+2])/3;s+=l; if(l<12)d++;} return {mean:+(s/N).toFixed(1),dark:+(100*d/N).toFixed(1)}; };
+console.log('menu stats', await stat('live-menu.png'));
+console.log('menu', await page.evaluate(()=>({screen:NEXUS.screen(), levels:NEXUS.LEVELS.length, title:document.title})));
+await page.evaluate(()=>NEXUS.loadLevel('1-1')); await new Promise(r=>setTimeout(r,2500));
+console.log('game stats', await stat('live-game.png'));
+const g = await page.evaluate(()=>({screen:NEXUS.screen(), st:NEXUS.state(), windows:NEXUS.windowCount()}));
+console.log('game', JSON.stringify({screen:g.screen, level:g.st.level, grounded:g.st.grounded, player:g.st.player, framed:g.st.framed}));
+// quick win
+await page.evaluate(()=>NEXUS.teleportToExit()); await new Promise(r=>setTimeout(r,900));
+console.log('complete', await page.evaluate(()=>({screen:NEXUS.screen(), score:document.getElementById('compScore').textContent})));
+await page.evaluate(()=>NEXUS.loadLevel('5-3')); await new Promise(r=>setTimeout(r,1200));
+console.log('boss level loads', await page.evaluate(()=>NEXUS.state().boss));
+console.log('ERRORS', errs.slice(0,6));
+await browser.close();
