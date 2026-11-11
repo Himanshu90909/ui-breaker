@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 const S = './src/';
 const css = readFileSync(S + '10_style.css', 'utf8');
 const body = readFileSync(S + '20_body.html', 'utf8');
-const jsFiles = ['30_core.js', '31_engine.js', '32_world.js', '33_mechanics.js', '34_levels.js', '35_game.js', '36_ui.js', '37_editor.js', '38_boot.js'];
+const jsFiles = ['30_core.js', '31_engine.js', '32_world.js', '33_mechanics.js', '34_levels.js', '35_game.js', '36_ui.js', '37_editor.js', '38_boot.js', '39_ai.js'];
 const js = jsFiles.map(f => `\n/* ===== ${f} ===== */\n` + readFileSync(S + f, 'utf8')).join('\n');
 
 mkdirSync('./build', { recursive: true });
@@ -37,5 +37,7 @@ ${js}
 </script>
 </body>
 </html>`;
+mkdirSync('./public', { recursive: true });
+writeFileSync('./public/index.html', html);
 writeFileSync('./index.html', html);
 console.log('built index.html', (html.length / 1024).toFixed(1) + 'kb', 'js', (js.length / 1024).toFixed(1) + 'kb');
